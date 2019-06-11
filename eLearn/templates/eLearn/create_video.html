@@ -1,0 +1,26 @@
+{% extends "eLearn/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+  <div class="col-8">
+    <div class="tab-content" id="v-pills-tabContent">
+      <h1>
+        {% if object %}
+          Edit course "{{ object.name }}"
+        {% else %}
+          Add a new video
+        {% endif %}
+      </h1>
+      <div class="module">
+        <h2>Video info</h2>
+        <form action="." method="post">
+          {% bootstrap_form form %}
+          {% csrf_token %}
+          <p><input type="submit" value="Save video" class="btn btn-primary" role="button"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

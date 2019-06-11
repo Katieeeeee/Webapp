@@ -1,0 +1,22 @@
+{% extends "eLearn/base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+  <div class="col-8">
+    <div class="tab-content" id="v-pills-tabContent">
+      <h1>Delete course "{{ object.name }}"</h1>
+    
+      <div class="module">
+        <form action="" method="post">
+          {% csrf_token %}
+          <p>Are you sure you wanted to delete "{{ object }}"?</p>
+          {% buttons %}
+            <p><input type="submit" class="btn btn-danger" role="button" value="Confirm"></p>
+          {% endbuttons %}
+        </form>
+      </div>
+    </div>
+  </div>
+ 
+{% endblock content %}

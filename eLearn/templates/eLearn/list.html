@@ -1,0 +1,37 @@
+{% extends "eLearn/base.html" %}
+
+{% block content %}
+
+  <div class="col-8">
+    <div class="tab-content" id="v-pills-tabContent">
+      <h1>eLearning courses</h1>
+      
+      <p>
+        <a href="{% url 'eLearn:create_course' %}" class="btn btn-primary" role="button">Create new course</a>
+      </p>
+
+      <div class="module">
+        {% for course in courses %}
+          <div class="card card-body bg-light">
+            <h3>{{ course.name }}</h3>
+            <p>
+              <a href="{% url 'eLearn:edit_course' course.id %}" class="btn btn-primary" role="button">Edit course</a>
+              <a href="{% url 'eLearn:delete_course' course.id %}" class="btn btn-warning" role="button">Delete course</a>
+              <a href="{% url 'eLearn:list_video' course.id %}" class="btn btn-primary" role="button">Edit course videos</a>
+            </p>
+          </div>
+          </br>
+        {% empty %}
+          <p>You haven't created any courses yet.</p>
+        {% endfor %}
+        <p>
+          <a href="{% url 'eLearn:create_course' %}" class="btn btn-primary" role="button">Create new course</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-2">
+  </div>
+
+{% endblock %}

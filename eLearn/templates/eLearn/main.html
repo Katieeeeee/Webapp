@@ -1,0 +1,42 @@
+{% extends "eLearn/base.html" %}
+
+{% block content %}
+
+  <div class="col-8">
+{#    video playback; formation of url: https://www.youtube.com/embed/{{ video.vid }}#}
+    <div class="tab-content" id="v-pills-tabContent">
+      {% for video in videos %}
+        {% if forloop.first %}
+          <div class="tab-pane fade show active" id="v-pills-{{ video.id }}" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video.videoid }}" allowfullscreen></iframe>
+            </div>
+          </div>
+        {% else %}
+          <div class="tab-pane fade" id="v-pills-{{ video.id }}" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ video.videoid }}" allowfullscreen></iframe>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-2">
+{#    video list#}
+    <div class="p-2 border border-dark rounded bg-light">
+      <div class="nav flex-column nav-pills red" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <h4>{{ selected_course }}</h4>
+        {% for video in videos %}
+          {% if forloop.first %}
+          <a class="nav-link active" id="v-pills-{{ video.id }}-tab" data-toggle="pill" href="#v-pills-{{ video.id }}" role="tab" aria-controls="v-pills-{{ video.id }}" aria-selected="true">{{ video.name }}</a>
+          {% else %}
+          <a class="nav-link" id="v-pills-{{ video.id }}-tab" data-toggle="pill" href="#v-pills-{{ video.id }}" role="tab" aria-controls="v-pills-{{ video.id }}" aria-selected="false">{{ video.name }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
